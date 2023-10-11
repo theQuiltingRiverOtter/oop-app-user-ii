@@ -97,12 +97,7 @@ class User:
         User.all_user_posts[self.name] = self._user_posts
 
     def delete_post(self, post_to_delete):
-        index = None
-        for i, post in enumerate(self._user_posts):
-            if post == post_to_delete:
-                index = i
-        if index != None:
-            self._user_posts.splice(index, 1)
+        self._user_posts.remove(post_to_delete)
         User.all_user_posts[self.name] = self._user_posts
 
     def view_posts(self):
@@ -118,7 +113,9 @@ megan.add_post("This is a great app")
 john.add_post("Hi")
 megan.add_post("Code Platoon is the best bootcamp")
 megan.view_posts()
+john.view_posts()
 
+john.delete_post("Hi")
 User.view_all_users()
 print()
 User.view_all_user_posts()
